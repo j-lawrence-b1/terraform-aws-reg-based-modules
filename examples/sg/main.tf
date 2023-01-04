@@ -15,8 +15,8 @@ locals {
 resource "random_string" "suffix" {
   length = 8
   lower  = true
-  upper  = true
-  special = true
+  upper  = false
+  special = false
 }
 
 # ---------------------------------
@@ -25,7 +25,7 @@ resource "random_string" "suffix" {
 module "public_vpc" {
   source = "../../modules/vpc"
 
-  vpc_name = "${local.resource_prefix}-${module.random_string.suffix.id}"
+  vpc_name = "${local.resource_prefix}-${random_string.suffix.id}"
   tags     = local.default_tags
 }
 
@@ -34,6 +34,6 @@ module "sg" {
 
   vpc_id = module.public_vpc.vpc_id
 
-  name = "${local.resource_prefix}-${module.random_string.suffix.id}"
+  name = "${local.resource_prefix}-${random_string.suffix.id}"
   tags = local.default_tags
 }

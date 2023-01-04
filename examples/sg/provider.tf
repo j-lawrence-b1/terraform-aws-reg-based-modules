@@ -1,16 +1,16 @@
 terraform {
-  required_version = "= 1.1.8"
+  required_version = "= 1.3.7"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "4.22.0"
+      version = "4.48.0"
     }
     http = {
       source  = "hashicorp/http"
-      version = "2.4.1"
+      version = "3.2.1"
     }
   }
-  backend "s3" {} # Define backend config in ./backend.hcl
+  backend "local" { path = "./terraform.tfstate" } # Define backend config in ./backend.hcl
 }
 
 provider "aws" {
