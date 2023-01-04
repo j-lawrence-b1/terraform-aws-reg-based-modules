@@ -6,15 +6,14 @@ variable "vpc_id" {
   type        = string
 }
 
-# --------------------------------
-# Optional inputs.
-# --------------------------------
 variable "tags" {
   description = "Default tags"
   type        = map(string)
-  default     = {}
 }
 
+# --------------------------------
+# Optional inputs.
+# --------------------------------
 variable "name" {
   description = "Security group name"
   type        = string
@@ -28,13 +27,26 @@ variable "description" {
 }
 
 variable "ingress_rules" {
-  description = "List of pre-fabricated terraform-aws/security_group ingress rules"
+  description = "List of pre-fabricated terraform-aws security_group ingress rules"
   type        = list(string)
   default     = ["http-80-tcp", "ssh-tcp"] # Good for test projects only.
 }
 
 variable "ingress_cidr_blocks" {
-  description = "List of ingress CIDRs"
+  description = "List of ingress CIDRs. Will be joined to IP of the TF execution env."
   type        = list(string)
-  default     = ["0.0.0.0/0"] # Good for test projects only
+  default     = []
+}
+
+variable "custom_ingress_rules" {
+  description = "List of custom port, protocol, description, cider_block ingress rules"
+  type = list(object(
+    {
+      port        = string
+      protocol    = string
+      cidr_blocks = list(string)
+      description = string
+    })
+  )
+  default = []
 }
