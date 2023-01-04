@@ -1,11 +1,11 @@
 data "http" "myip" {
-  provider = "h
+  provider = http
   url = "http://ipv4.icanhazip.com"
 }
 
 locals {
-  myip           = "${chomp(data.http.myip.request_body)}/32"
-  my_cidr_blocks = concat(var.ingress_cidr_blocks, local.myip)
+  myip           = "${chomp(data.http.myip.response_body)}/32"
+  my_cidr_blocks = concat(var.ingress_cidr_blocks, [local.myip])
 }
 
 module "sg" {
@@ -22,8 +22,8 @@ module "sg" {
       from_port   = rule["port"]
       to_port     = rule["port"] # FTM, disallow port mapping.
       protocol    = rule["protocol"]
-      description = rule["description"] == null ? "Ingress:${each.value.port}:${each.value.protocol}" : rule["description"]
-      cidr_blocks = length(rule["cidr_blocks"]) > 0 ? concat(rule["cidr_blocks"], local.myip) : local.my_cidr_blocks
+      description = rule["description"] == null ? "Ingress:${rule["port"]}:${rule["protocol"]}":rule["description"]
+      cidr_blocks = length(rule["cidr_blocks"]) > 0 ? concat(rule["cidr_blocks"], [local.myip]) : local.my_cidr_blocks
     }
   ]
 
