@@ -7,7 +7,7 @@ variable "region" {
   default     = "us-west-2"
 }
 
-variable "app" {
+variable "app_name" {
   description = "Application name"
   type        = string
   default     = "test-vpc"
@@ -19,8 +19,14 @@ variable "env" {
   default     = "dev"
 }
 
+variable "owner" {
+  description = "Owner name"
+  type        = string
+  default     = "lb"
+}
+
 variable "team" {
   description = "Team name"
   type        = string
-  default     = "lb"
+  default     = "casab"
 }

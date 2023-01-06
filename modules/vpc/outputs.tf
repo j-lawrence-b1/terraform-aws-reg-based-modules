@@ -13,7 +13,17 @@ output "public_subnets" {
   value       = module.vpc.public_subnets
 }
 
+output "public_subnets_cidr_blocks" {
+  description = "Public subnet cidr blocks"
+  value       = module.vpc.public_subnets_cidr_blocks
+}
+
 output "private_subnets" {
   description = "Private subnet ids"
   value       = module.vpc.private_subnets
+}
+
+output "private_subnets_cidr_blocks" {
+  description = "Public subnet cidr blocks"
+  value       = module.vpc.private_subnets_cidr_blocks
 }

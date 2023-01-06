@@ -26,6 +26,12 @@ variable "description" {
   default     = "SSH, HTTP ingress from anywhere"
 }
 
+variable "include_my_ip" {
+  description = "If true, include the terraform environment public ip as a source to all ingress rules."
+  type        = bool
+  default     = false
+}
+
 variable "ingress_rules" {
   description = "List of pre-fabricated terraform-aws security_group ingress rules"
   type        = list(string)

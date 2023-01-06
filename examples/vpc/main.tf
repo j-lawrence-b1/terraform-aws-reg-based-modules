@@ -2,13 +2,7 @@
 # locals
 # ---------------------------------
 locals {
-  resource_prefix = "${var.team}-${var.env}-${var.app}"
-  default_tags = {
-    provisioner = "terraform"
-    env         = var.env
-    team        = var.team
-    app         = var.app
-  }
+  resource_prefix = "${var.team}-${var.env}-${var.app_name}"
 }
 
 resource "random_string" "suffix" {
@@ -21,9 +15,20 @@ resource "random_string" "suffix" {
 # ---------------------------------
 # modules
 # ---------------------------------
+module "tags" {
+  source = "../../modules/tags"
+
+  tags = {
+    app         = var.app_name
+    env         = var.env
+    owner       = var.owner
+    team        = var.team
+  }
+}
+
 module "public_vpc" {
   source = "../../modules/vpc"
 
   vpc_name = "${local.resource_prefix}-${random_string.suffix.id}"
-  tags     = local.default_tags
+  tags     = module.tags.default_tags
 }

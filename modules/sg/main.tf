@@ -4,8 +4,8 @@ data "http" "myip" {
 }
 
 locals {
-  myip           = "${chomp(data.http.myip.response_body)}/32"
-  my_cidr_blocks = concat(var.ingress_cidr_blocks, [local.myip])
+  myip           = var.include_my_ip ? ["${chomp(data.http.myip.response_body)}/32"] : []
+  my_cidr_blocks = concat(var.ingress_cidr_blocks, local.myip)
 }
 
 module "sg" {
@@ -23,7 +23,7 @@ module "sg" {
       to_port     = rule["port"] # FTM, disallow port mapping.
       protocol    = rule["protocol"]
       description = rule["description"] == null ? "Ingress:${rule["port"]}:${rule["protocol"]}":rule["description"]
-      cidr_blocks = length(rule["cidr_blocks"]) > 0 ? concat(rule["cidr_blocks"], [local.myip]) : local.my_cidr_blocks
+      cidr_blocks = length(rule["cidr_blocks"]) > 0 ? concat(rule["cidr_blocks"], local.myip) : local.my_cidr_blocks
     }
   ]
 

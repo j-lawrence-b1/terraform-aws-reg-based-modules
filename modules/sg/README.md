@@ -26,6 +26,7 @@ No requirements.
 |------|-------------|------|---------|:--------:|
 | <a name="input_custom_ingress_rules"></a> [custom\_ingress\_rules](#input\_custom\_ingress\_rules) | List of custom port, protocol, description, cider\_block ingress rules | <pre>list(object(<br>    {<br>      port        = string<br>      protocol    = string<br>      cidr_blocks = list(string)<br>      description = string<br>    })<br>  )</pre> | `[]` | no |
 | <a name="input_description"></a> [description](#input\_description) | Security group description | `string` | `"SSH, HTTP ingress from anywhere"` | no |
+| <a name="input_include_my_ip"></a> [include\_my\_ip](#input\_include\_my\_ip) | If true, include the terraform environment public ip as a source to all ingress rules. | `bool` | `false` | no |
 | <a name="input_ingress_cidr_blocks"></a> [ingress\_cidr\_blocks](#input\_ingress\_cidr\_blocks) | List of ingress CIDRs. Will be joined to IP of the TF execution env. | `list(string)` | `[]` | no |
 | <a name="input_ingress_rules"></a> [ingress\_rules](#input\_ingress\_rules) | List of pre-fabricated terraform-aws security\_group ingress rules | `list(string)` | <pre>[<br>  "http-80-tcp",<br>  "ssh-tcp"<br>]</pre> | no |
 | <a name="input_name"></a> [name](#input\_name) | Security group name | `string` | `"http-ssh-sg"` | no |

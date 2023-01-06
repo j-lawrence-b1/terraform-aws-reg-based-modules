@@ -18,6 +18,7 @@
 |------|--------|---------|
 | <a name="module_public_vpc"></a> [public\_vpc](#module\_public\_vpc) | ../../modules/vpc | n/a |
 | <a name="module_sg"></a> [sg](#module\_sg) | ../../modules/sg | n/a |
+| <a name="module_tags"></a> [tags](#module\_tags) | ../../modules/tags | n/a |
 
 ## Resources
 
@@ -29,10 +30,11 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app"></a> [app](#input\_app) | Application name | `string` | `"test-sg"` | no |
+| <a name="input_app_name"></a> [app\_name](#input\_app\_name) | Application name | `string` | `"test-sg"` | no |
 | <a name="input_env"></a> [env](#input\_env) | One of 'prd', 'stg', or 'dev' | `string` | `"dev"` | no |
+| <a name="input_owner"></a> [owner](#input\_owner) | Team name | `string` | `"lb"` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | `"us-west-2"` | no |
-| <a name="input_team"></a> [team](#input\_team) | Team name | `string` | `"lb"` | no |
+| <a name="input_team"></a> [team](#input\_team) | Team name | `string` | `"casab"` | no |
 
 ## Outputs
 
