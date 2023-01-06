@@ -1,6 +1,11 @@
 # -----------------------------
 # Required inputs.
 # -----------------------------
+variable "instance_prefix" {
+  description = "Instance name prefix"
+  type        = string
+}
+
 variable "security_group_ids" {
   description = "EC2 security groups"
   type        = list(string)
@@ -11,18 +16,18 @@ variable "subnet_id" {
   type        = string
 }
 
-variable "instance_prefix" {
-  description = "Instance name prefix"
-  type        = string
+variable "tags" {
+  description = "Tags"
+  type        = map(string)
 }
 
 # -----------------------------
 # Optional inputs.
 # -----------------------------
-variable "tags" {
-  description = "Tags"
-  type        = map(string)
-  default     = {}
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-west-2"
 }
 
 variable "ami" {
@@ -58,5 +63,5 @@ variable "enable_detailed_monitoring" {
 variable "disable_api_termination" {
   description = "Disable api termination protection"
   type        = bool
-  default     = false
+  default     = true
 }
