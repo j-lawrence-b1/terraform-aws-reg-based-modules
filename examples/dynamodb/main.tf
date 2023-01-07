@@ -22,17 +22,30 @@ module "tags" {
   source = "../../modules/tags"
 
   tags = {
-    app = var.app_name
-    env = var.env
-    team        = var.team
+    app   = var.app_name
+    env   = var.env
     owner = var.owner
+    team  = var.team
   }
 }
 
-module "s3_basic" {
-  source = "../../modules/s3"
+module "table" {
+  source = "../../modules/dynamodb"
 
-  bucket_name = "${local.resource_prefix}-${random_string.suffix.id}"
+  table_name        = "${local.resource_prefix}-${random_string.suffix.id}"
+  partition_key     = "string_key"
+  sort_key          = "string_key"
+  enable_encryption = false # Not needed for testing.
+  attributes = [
+    {
+      name = "string_key"
+      type = "S"
+    },
+    {
+      name = "number_key"
+      type = "N"
+    }
+  ]
 
   tags = module.tags.default_tags
 }
