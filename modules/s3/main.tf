@@ -110,7 +110,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket" {
     dynamic "noncurrent_version_expiration" {
       for_each = toset(var.enable_versioning ? ["fake"] : [])
       content {
-        noncurrent_days = var.lifecycle_expiration_days < 90 ? var.lifecycle_expiration_days : 90
+        noncurrent_days = 90
       }
     }
 
