@@ -127,7 +127,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket" {
 # ---------------------------------------------------------------------
 # Log bucket resources
 #
-# For the log bucket, we only configure sse and expiration.
+# For the log bucket, we only configure sse and lifecycle.
 # ---------------------------------------------------------------------
 resource "aws_s3_bucket_server_side_encryption_configuration" "logs" {
   count = var.enable_bucket && var.enable_logging && var.enable_server_side_encryption ? 1 : 0
