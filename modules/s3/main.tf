@@ -50,21 +50,6 @@ resource "aws_s3_bucket_logging" "bucket" {
   target_prefix = "logs/"
 }
 
-# -------------------------------------------------------------------------------
-# Resources
-#
-# These resources exist because I wanted to minimize the use of complex input
-# variables but dynamic blocks aren't supported inside modules (grrr).
-# -------------------------------------------------------------------------------
-resource "aws_s3_bucket_logging" "bucket" {
-  count = var.enable_bucket && var.enable_logging ? 1 : 0
-
-  bucket = module.s3_bucket.s3_bucket_id
-
-  target_bucket = module.s3_log_bucket.s3_bucket_id
-  target_prefix = "logs/"
-}
-
 resource "aws_s3_bucket_server_side_encryption_configuration" "bucket" {
   count = var.enable_bucket && var.enable_server_side_encryption ? 1 : 0
 
