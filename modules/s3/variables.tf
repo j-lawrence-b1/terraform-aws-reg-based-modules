@@ -15,38 +15,38 @@ variable "tags" {
 #   https://github.com/terraform-aws-modules/terraform-aws-s3-bucket/blob/master/main.tf
 # for an example implementation.
 # ---------------------------------------------------------------------------------------
-variable "create_bucket" {
-  description = "Boolean to create the bucket"
+variable "enable_bucket" {
+  description = "Boolean whether to create the bucket"
   type        = bool
   default     = true
 }
 
 variable "acl" {
-  description = "Canned bucket ACLs. Set to 'log-delivery-write' for lb logging buckets. Conflicts with grant."
+  description = "Canned bucket ACL. Set to log-delivery-write for logging buckets. Set to null if using grants or access_policy"
   type        = string
-  default     = null
+  default     = "private"
 }
 
-variable "grant" {
-  description = "S3 bucket grants. Conflicts with acl."
+variable "access_grant_rules" {
+  description = "S3 bucket access grants. Conflicts with acl"
   type        = list(map(string))
   default     = []
 }
 
-variable "enable_policy" {
+variable "enable_access_policy" {
   description = "Set true to enable attaching an iam bucket policy"
   type        = bool
   default     = false
 }
 
-variable "policy" {
+variable "access_policy_document" {
   description = "S3 bucket IAM policy, as a valid JSON document"
   type        = string
   default     = null
 }
 
-variable "cors_rule" {
-  description = "Cross-Origin Resource Sharing (CORS) rule."
+variable "cors_rules" {
+  description = "Cross-Origin Resource Sharing (CORS) rules"
   type        = list(map(string))
   default     = []
 }
@@ -57,56 +57,50 @@ variable "enable_versioning" {
   default     = true
 }
 
-variable "logging" {
-  description = "Logging configuration."
-  type        = map(string)
-  default     = {}
-}
-
-variable "server_side_encryption_configuration" {
-  description = "Server side encription configuration block"
-  type        = any
-  default     = {
-    rule = {
-      apply_server_side_encryption_by_default = {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
-}
-
-variable "block_public_acls" {
-  description = "Set true to block creation of public acls"
-  type        = bool
-  default     = true
-}
-
-variable "block_public_policy" {
-  description = "Set true to block creation of policies that allow public access"
-  type        = bool
-  default     = true
-}
-
-variable "ignore_public_acls" {
-  description = "Set true to ignore existing public acls"
-  type        = bool
-  default     = true
-}
-
-variable "restrict_public_buckets" {
-  description = "Set true to restrict public bucket policies"
-  type        = bool
-  default     = true
-}
-
-variable "attach_elb_log_delivery_policy" {
-  description = "Set to true for for ELB logging buckets"
+variable "enable_logging" {
+  description = "Boolean whether to enable s3 logging."
   type        = bool
   default     = false
 }
 
-variable "attach_lb_log_delivery_policy" {
-  description = "Set to true for for ALB/NLB logging buckets"
+variable "log_bucket_name" {
+  description = "Custom bucket name for logging. Defaults to <bucket_name>-logs"
+  type        = string
+  default     = null
+}
+
+variable "enable_server_side_encryption" {
+  description = "Boolean whether to enable AES256 server side encription."
+  type        = bool
+  default     = true
+}
+
+variable "enable_public_access" {
+  description = "If false, forbid all public access via user policy or object acls."
   type        = bool
   default     = false
+}
+
+variable "enable_lifecycle" {
+  description = "Boolean whether to enable a lifecycle rule for old versions and incomplete multipart uploads."
+  type        = bool
+  default     = false
+}
+
+variable "lifecycle_expiration_days" {
+  description = "Number of days before expiring s3 bucket objects. Must be nonzero if enable_lifecycle = true"
+  type        = number
+  default     = null
+}
+
+variable "log_enable_lifecycle" {
+  description = "Boolean whether to enable a basic version and multipart lifecycle rule on the logging bucket."
+  type        = bool
+  default     = false
+}
+
+variable "log_lifecycle_expiration_days" {
+  description = "Number of days before expiring s3 log bucket objects."
+  type        = number
+  default     = null
 }

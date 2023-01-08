@@ -39,4 +39,5 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_logging_bucket_id"></a> [logging\_bucket\_id](#output\_logging\_bucket\_id) | Logging bucket id |
 | <a name="output_s3_bucket_id"></a> [s3\_bucket\_id](#output\_s3\_bucket\_id) | S3 bucket id |
