@@ -34,7 +34,7 @@ module "table" {
 
   table_name        = "${local.resource_prefix}-${random_string.suffix.id}"
   partition_key     = "string_key"
-  sort_key          = "string_key"
+  sort_key          = "number_key"
   enable_encryption = false # Not needed for testing.
   attributes = [
     {

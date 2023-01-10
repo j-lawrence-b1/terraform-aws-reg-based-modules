@@ -39,7 +39,11 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_database_subnets"></a> [database\_subnets](#output\_database\_subnets) | Database subnet ids |
+| <a name="output_database_subnets_cidr_blocks"></a> [database\_subnets\_cidr\_blocks](#output\_database\_subnets\_cidr\_blocks) | Database subnet cidr blocks |
 | <a name="output_name"></a> [name](#output\_name) | VPC name |
 | <a name="output_private_subnets"></a> [private\_subnets](#output\_private\_subnets) | Private subnet ids |
+| <a name="output_private_subnets_cidr_blocks"></a> [private\_subnets\_cidr\_blocks](#output\_private\_subnets\_cidr\_blocks) | Public subnet cidr blocks |
 | <a name="output_public_subnets"></a> [public\_subnets](#output\_public\_subnets) | Public subnet ids |
+| <a name="output_public_subnets_cidr_blocks"></a> [public\_subnets\_cidr\_blocks](#output\_public\_subnets\_cidr\_blocks) | Public subnet cidr blocks |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | VPC id |
