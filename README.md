@@ -1,4 +1,4 @@
-# terraform-aws-reg-based-modules
+# terraform-reg-based-modules
 Module hierarchy sourcing from the Terraform registry. Intent is to simplify imputs for simple use cases.
 
 Design goals:
