@@ -8,4 +8,4 @@ Design goals:
 4. Regard for best practices (cit. needed).
 
 ## Attributions
-This repo sources official modules from the [Terraform registry](https://registry.terraform.io). Their license is [here](https://registry.terraform.io/terms).
+This repo sources official modules hosted on the [Terraform registry](https://registry.terraform.io). Their license is [here](https://registry.terraform.io/terms). Other licenses may apply.
