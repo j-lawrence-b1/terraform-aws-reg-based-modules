@@ -23,7 +23,7 @@ output "database_subnet_ids" {
   value       = module.vpc.database_subnets
 }
 
-output "nat_public_ips" {
-  description = "NAT public ids"
-  value       = module.vpc.nat_public_ids
-}
+#output "nat_public_ips" {
+#  description = "NAT public ids"
+#  value       = module.vpc.nat_public_ids
+#}

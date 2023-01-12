@@ -37,3 +37,8 @@ output "database_subnets_cidr_blocks" {
   description = "Database subnet cidr blocks"
   value       = module.vpc.database_subnets_cidr_blocks
 }
+
+output "nat_public_ips" {
+  description = "NAT public ips"
+  value       = length(var.private_subnets) > 0 ? module.vpc.nat_public_ips : []
+}
