@@ -23,25 +23,25 @@ variable "enable_vpc" {
 variable "vpc_cidr" {
   description = "VPC CIDR block"
   type        = string
-  default     = "10.0.0.0/20" # 4096 IPs from 10.0.0.0 to 10.0.15.255.
+  default     = "10.0.0.0/24" # 251 usable ips, from 10.0.0.0 to 10.0.0.255.
 }
 
 variable "public_subnets" {
   description = "List of public subnet CIDR blocks"
   type        = list(string)
-  default     = ["10.0.0.0/24", "10.0.1.0/24"]
+  default     = ["10.0.0.0/27", "10.0.0.32/27"]  # 28 usable ips each. Good enough for testing.
 }
 
 variable "private_subnets" {
   description = "List of private subnet CIDR blocks"
   type        = list(string)
-  default     = [] # Use ["10.0.2.0/24", "10.0.3.0/24"] if you want private subnets.
+  default     = [] # Use ["10.0.0.64/27", "10.0.0.96/27"] if you want private subnets.
 }
 
 variable "database_subnets" {
   description = "List of database subnet CIDR blocks"
   type        = list(string)
-  default     = [] # Use ["10.0.4.0/24", "10.0.5.0/24"] if you want database subnets.
+  default     = [] # Use ["10.0.0.128/27", "10.0.0.160/27"] if you want database subnets.
 }
 
 variable "nat_eip_ids" {
