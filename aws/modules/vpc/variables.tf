@@ -29,7 +29,7 @@ variable "vpc_cidr" {
 variable "public_subnets" {
   description = "List of public subnet CIDR blocks"
   type        = list(string)
-  default     = ["10.0.0.0/27", "10.0.0.32/27"]  # 28 usable ips each. Good enough for testing.
+  default     = ["10.0.0.0/27", "10.0.0.32/27"] # 28 usable ips each. Good enough for testing.
 }
 
 variable "private_subnets" {
@@ -48,4 +48,10 @@ variable "nat_eip_ids" {
   description = "List of NAT EIP IDs if created elsewhere."
   type        = list(string)
   default     = []
+}
+
+variable "enable_database_public_access" {
+  description = "Boolean whether to enable internet access to the persistence subnets (not recommended for production)."
+  type        = bool
+  default     = false
 }
