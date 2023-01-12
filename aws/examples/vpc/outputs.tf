@@ -22,3 +22,8 @@ output "database_subnet_ids" {
   description = "Database subnet ids"
   value       = module.vpc.database_subnets
 }
+
+output "nat_public_ips" {
+  description = "NAT public ids"
+  value       = module.vpc.nat_public_ids
+}
