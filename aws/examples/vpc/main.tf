@@ -26,7 +26,7 @@ module "tags" {
   }
 }
 
-module "public_vpc" {
+module "vpc" {
   source = "../../modules/vpc"
 
   vpc_name = "${local.resource_prefix}-${random_string.suffix.id}"
